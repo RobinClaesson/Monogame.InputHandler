@@ -104,6 +104,16 @@ namespace MonoGame.Inputs
                     return false;
             }
         }
+        public static bool MiddleMouseDown
+        {
+            get
+            {
+                if (_bufferSize > 0)
+                    return _mouseStates[0].MiddleButton == ButtonState.Pressed;
+                else
+                    return false;
+            }
+        }
 
         public static bool LeftMouseClick
         {
@@ -124,6 +134,18 @@ namespace MonoGame.Inputs
                 if (_bufferSize > 1)
                 {
                     return _mouseStates[0].RightButton == ButtonState.Pressed && _mouseStates[1].RightButton == ButtonState.Released;
+                }
+
+                else return false;
+            }
+        }
+        public static bool MiddleMouseClick
+        {
+            get
+            {
+                if (_bufferSize > 1)
+                {
+                    return _mouseStates[0].MiddleButton == ButtonState.Pressed && _mouseStates[1].MiddleButton == ButtonState.Released;
                 }
 
                 else return false;
@@ -151,6 +173,7 @@ namespace MonoGame.Inputs
             }
         }
 
+
         //┌-----------------------------------------┐
         //|             Mousevariables              |
         //└-----------------------------------------┘
@@ -164,7 +187,6 @@ namespace MonoGame.Inputs
                     return Point.Zero;
             }
         }
-
         public static Rectangle MouseRect
         {
             get
@@ -172,6 +194,7 @@ namespace MonoGame.Inputs
                 return new Rectangle(MousePos, _onePoint);
             }
         }
+
         public static int MouseScrollState
         {
             get
