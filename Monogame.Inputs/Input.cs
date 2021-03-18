@@ -10,8 +10,7 @@ namespace MonoGame.Inputs
 {
     public class Input
     {
-        private List<Keys> _keys = new List<Keys>();
-
+          private List<Keys> _keys = new List<Keys>();
 
         //┌-----------------------------------------┐
         //|             Constructors                |
@@ -54,7 +53,15 @@ namespace MonoGame.Inputs
 
                 return false;
             }
-        }
+        } //True if any keys is down
+        public bool IsUp
+        {
+            get
+            {
+                return !IsDown;
+            }
+        }   //True if no key is down
+
         public bool Pressed
         {
             get
@@ -67,7 +74,7 @@ namespace MonoGame.Inputs
 
                 return false;
             }
-        }
+        } //True once on  press
         public bool Released
         {
             get
@@ -80,7 +87,13 @@ namespace MonoGame.Inputs
 
                 return false;
             }
-        }
+        } //Key once on release
+
+        //┌-----------------------------------------┐
+        //|             Operator Overrides          |
+        //└-----------------------------------------┘
+        public static bool operator true(Input x) => x.IsDown;
+        public static bool operator false(Input x) => x.IsUp;
 
 
         /*███████ ████████  █████  ████████ ██  ██████ 
@@ -117,7 +130,6 @@ namespace MonoGame.Inputs
                 }
             }
         }
-
         public static void Update()
         {
             //Update backbuffer
@@ -324,5 +336,6 @@ namespace MonoGame.Inputs
                     return 0;
             }
         }
+       
     }
 }
