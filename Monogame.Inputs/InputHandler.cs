@@ -63,7 +63,6 @@ namespace MonoGame.Inputs
             else
                 return false;
         }
-
         public static bool KeyUp(Keys key)
         {
             if (_bufferSize > 0)
@@ -78,6 +77,10 @@ namespace MonoGame.Inputs
                 return _keyStates[0].IsKeyDown(key) && _keyStates[1].IsKeyUp(key);
             else
                 return false;
+        }
+        public static bool KeyRelease(Keys key)
+        {
+            return _keyStates[0].IsKeyUp(key) && _keyStates[1].IsKeyDown(key);
         }
 
 
@@ -146,6 +149,43 @@ namespace MonoGame.Inputs
                 if (_bufferSize > 1)
                 {
                     return _mouseStates[0].MiddleButton == ButtonState.Pressed && _mouseStates[1].MiddleButton == ButtonState.Released;
+                }
+
+                else return false;
+            }
+        }
+
+        public static bool LeftMouseRelease
+        {
+            get
+            {
+                if (_bufferSize > 1)
+                {
+                    return _mouseStates[0].LeftButton == ButtonState.Released && _mouseStates[1].LeftButton == ButtonState.Released;
+                }
+
+                else return false;
+            }
+        }
+        public static bool RightMouseRelease
+        {
+            get
+            {
+                if (_bufferSize > 1)
+                {
+                    return _mouseStates[0].RightButton == ButtonState.Released && _mouseStates[1].RightButton == ButtonState.Pressed;
+                }
+
+                else return false;
+            }
+        }
+        public static bool MiddleMouseRelease
+        {
+            get
+            {
+                if (_bufferSize > 1)
+                {
+                    return _mouseStates[0].MiddleButton == ButtonState.Released && _mouseStates[1].MiddleButton == ButtonState.Pressed;
                 }
 
                 else return false;
